@@ -6,8 +6,8 @@ class Rover {
    }
 
    receiveMessage(){
-      
-   }
+
+   } 
 
 }
 
