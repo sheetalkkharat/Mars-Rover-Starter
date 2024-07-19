@@ -1,5 +1,15 @@
 class Rover {
-   // Write code here!
+   constructor(position, mode , generatorWatts) {
+      this.position = position;
+      this.mode = mode;
+      this.generatorWatts = generatorWatts;
+   }
+
+   receiveMessage(){
+      
+   }
+
 }
+
 
 module.exports = Rover;

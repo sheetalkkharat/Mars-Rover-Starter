@@ -1,5 +1,10 @@
-class Message {
-   // Write code here!
-}
 
+
+class Message {
+   constructor(name, commands) {
+      this.name = name;
+      this.commands = commands;
+   }
+
+}
 module.exports = Message;
