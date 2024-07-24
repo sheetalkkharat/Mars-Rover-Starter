@@ -18,20 +18,14 @@ class Rover {
 
             if (command.commandType === 'MODE_CHANGE') {
                 this.mode = command.value;
-                if(this.mode === 'LOW_POWER') {
-                    result.completed = false;
-                } else{
-                    result.completed = true;
-                    result.roverStatus = {
-                        mode: this.mode,
-                    };
-                }   
+                 result.completed = true;
             } else if (command.commandType === 'MOVE') {
-                if (this.mode === 'NORMAL') {
-                    this.position = command.value;
-                    result.completed = true;
-                } else {
+                if (this.mode  === 'LOW_POWER') {
                     result.completed = false;
+                } else {
+                    result.completed = true;
+                    this.position = command.value;
+
                 }
             } else if (command.commandType === 'STATUS_CHECK') {
                 result.completed = true;

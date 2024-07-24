@@ -21,7 +21,7 @@ describe("Rover class", function () {
     const message = new Message('Test message with two commands', commands);
     const rover = new Rover(98382);    // Passes 98382 as the rover's position.
     const response = rover.receiveMessage(message);
-   expect(response.message).toBe(message.name);
+    expect(response.message).toBe(message.name);
   });
 
 
@@ -55,24 +55,24 @@ describe("Rover class", function () {
   });
 
   it("responds with a false completed value when attempting to move in LOW_POWER mode", function (){
-    const commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
+    const commands = [new Command('MODE_CHANGE', 'LOW_POWER'),
+      new Command('MOVE', 'LOW_POWER')];
     const message = new Message('responds with a false completed value when attempting to move in LOW_POWER mode', commands);
     const rover = new Rover(98382);    // Passes 98382 as the rover's position.
     const response = rover.receiveMessage(message);
 
-    expect(response.results[0].completed).toEqual(false);
+    expect(response.results[1].completed).toEqual(false);
   });
 
 
-it("responds with the position for the move command", function (){
-  const commands = [new Command('MOVE')];
-  const message = new Message('responds with the position for the move command', commands);
-  const rover = new Rover(98372);    // Passes 98382 as the rover's position.
-  const response = rover.receiveMessage(message);
+  it("responds with the position for the move command", function (){
+    const commands = [new Command('MOVE', 3245)];
+    const message = new Message('responds with the position for the move command', commands);
+    const rover = new Rover(98372);    // Passes 98382 as the rover's position.
+    const response = rover.receiveMessage(message);
 
-  expect(response.results[0].completed).toEqual(true);
-  expect(response.results[0].roverStatus.position).toEqual(new Rover(98382, "LOW_POWER", 110));
-});
+    expect(rover.position).toEqual(3245);
+  });
 
 
 });
